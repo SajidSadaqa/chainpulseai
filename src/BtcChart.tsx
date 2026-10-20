@@ -2,7 +2,6 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 export default function BtcChart() {
-  // إعدادات ومؤشرات رسم البيتكوين البياني (WEB-103)
   const option = {
     title: {
       text: 'Bitcoin (BTC) Price History',
@@ -25,7 +24,7 @@ export default function BtcChart() {
         type: 'line',
         smooth: true,
         lineStyle: {
-          color: '#ff9900', // لون برتقالي لبيتكوين
+          color: '#ff9900',
           width: 3,
         },
       },
@@ -34,12 +33,8 @@ export default function BtcChart() {
 
   return (
     <div style={{ padding: '20px', backgroundColor: '#fff', borderRadius: '8px' }}>
-      <ReactECharts option={option} style={{ height: '400px', width: '100%' }} />
-    </div>
-  );
-}return (
-    <div style={{ padding: '20px', backgroundColor: '#fff', borderRadius: '8px' }}>
       {/* @ts-ignore */}
       <ReactECharts option={option} style={{ height: '400px', width: '100%' }} />
     </div>
   );
+}
