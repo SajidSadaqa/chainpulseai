@@ -1,0 +1,11 @@
+#Notes file 
+this file explain what i complete in every commits .
+
+
+Currently , I create a ASP.NET Core Project with two GET endpoints and one POST endpoint 
+and I call every endpoint by Swagger. 
+and I Handle every Exception expected .
+therefore , the task 2 and task 3 is Done .....
+
+and I added this file .
+and I learn the goal of README file after this I modify it to write it correctly.
