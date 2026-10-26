@@ -1,0 +1,5 @@
+#Notes file 
+this file explain what i complete in every commits .
+
+
+i add the database and diagram about it .
