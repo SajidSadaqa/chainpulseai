@@ -1,0 +1,17 @@
+{
+  "name": "chainpulseai",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "echarts": "^6.1.0",
+    "echarts-for-react": "^3.0.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
