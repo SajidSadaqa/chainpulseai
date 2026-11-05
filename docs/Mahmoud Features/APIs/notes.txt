@@ -2,9 +2,8 @@
 this file explain what i complete in every commits .
 
 
-I complete API-201 successfully , 
-I add Coin class in Models folder and create a CoinController in Controller folder 
-and create AppDbContext in Data folder to handle data ,
-I check in every endpoint and every data in database and we can restart API without lose data .
+I complete PY-201 successfully , 
+I add a FastAPI in the project with two endpoints needed and 
+check it by swaggerUI and give me 200 code response.
 
 thank you ....
