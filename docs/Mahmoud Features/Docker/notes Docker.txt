@@ -1,0 +1,3 @@
+I complete DEV-201 
+I add Docker file and compose
+and I checked on every endpoints in API and DataBase.
