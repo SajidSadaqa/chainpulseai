@@ -160,6 +160,10 @@
   "components": {
     "schemas": {
       "Coin": {
+        "required": [
+          "name",
+          "symbol"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -167,12 +171,12 @@
             "format": "int32"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "symbol": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "priceUSD": {
             "type": "number",

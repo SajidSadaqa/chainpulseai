@@ -169,3 +169,4 @@ D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.sourcelink.json
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
