@@ -12,7 +12,7 @@ namespace APITasks.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "coin_cards",
+                name: "Coin",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
@@ -32,7 +32,7 @@ namespace APITasks.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "coin_cards");
+                name: "Coin");
         }
     }
 }

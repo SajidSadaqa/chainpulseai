@@ -11,6 +11,7 @@ namespace APITasks.Data
 
         public DbSet<Coin> Coins { get; set; }
 
+        public DbSet<MarketSnapshot> MarketSnapshots { get; set; }
 
     }
 }

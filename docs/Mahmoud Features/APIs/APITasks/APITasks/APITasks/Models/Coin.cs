@@ -4,27 +4,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APITasks.Models;
 
-[Table("coin_cards")]
+[Table("Coin")]
 public class Coin
 {
     
 
     [Key]
-    public int? ID { get; set; }
+    public int ID { get; set; }
 
-    [Display(Name = "Name")]
-    [Column(TypeName="varchar(70)")]
-    public string Name { get; set; }
+    [Required]
+    [Column(TypeName = "varchar(70)")]
+    public string Name { get; set; } = string.Empty;
 
-    [Display(Name = "Symbol")]
+    [Required]
     [Column(TypeName="varchar(20)")]
-    public string Symbol { get; set; }
+    public string Symbol { get; set; } = string.Empty;
 
-    [Display(Name = "Price USD")]
     [Column(TypeName="Numeric(10,4)")]
     public decimal PriceUSD { get; set; }
 
-    [Display(Name = "Changes through 24 hour")]
     [Column(TypeName="Numeric(10,4)")]
     public float Change24h { get; set; }
 
