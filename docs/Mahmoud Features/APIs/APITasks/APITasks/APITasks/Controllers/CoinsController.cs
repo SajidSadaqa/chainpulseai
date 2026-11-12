@@ -15,8 +15,6 @@ namespace APITasks.Controllers
         }
 
 
-        static int NextId = 1;
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Coin>>> GetAll()
         {
@@ -35,7 +33,11 @@ namespace APITasks.Controllers
                 return NotFound(new { message = $"Coin with id {id} was Not Found." });
             }
 
-            return Ok(Coin);
+            return Problem(
+            title: "Coin Not Found",
+            detail: $"Coin with ID {id} was not found.",
+            statusCode: StatusCodes.Status404NotFound
+);
 
         }
 
@@ -55,7 +57,11 @@ namespace APITasks.Controllers
 
             if (Coin == null)
             {
-                return NotFound(new { message = $"Coin with id {id} isn't exist to edit it." });
+                return Problem(
+                title: "Coin Not Found",
+                detail: $"Coin with ID {id} was not found.",
+                statusCode: StatusCodes.Status404NotFound
+                );
             }
 
 
@@ -77,7 +83,11 @@ namespace APITasks.Controllers
             var Coin = await _Context.Coins.FindAsync(id);
             if (Coin == null)
             {
-                return NotFound(new { message = $"Coin with id {id} isn't exist to remove it." });
+                return Problem(
+                title: "Coin Not Found",
+                detail: $"Coin with ID {id} was not found.",
+                statusCode: StatusCodes.Status404NotFound
+                );
             }
 
             _Context.Coins.Remove(Coin);

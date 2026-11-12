@@ -171,18 +171,24 @@
             "format": "int32"
           },
           "name": {
-            "minLength": 1,
+            "maxLength": 70,
+            "minLength": 2,
             "type": "string"
           },
           "symbol": {
-            "minLength": 1,
+            "maxLength": 20,
+            "minLength": 2,
             "type": "string"
           },
           "priceUSD": {
+            "maximum": 999999999,
+            "minimum": 0.0001,
             "type": "number",
             "format": "double"
           },
           "change24h": {
+            "maximum": 100,
+            "minimum": -100,
             "type": "number",
             "format": "float"
           }
