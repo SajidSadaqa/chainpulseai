@@ -1,27 +1,36 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export default function AppShell() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
-      {/* Sidebar */}
-      <aside style={{ width: '220px', backgroundColor: '#1a202c', color: '#fff', padding: '20px' }}>
-        <h2 style={{ fontSize: '18px', color: '#ff9900', marginBottom: '30px' }}>ChainPulse AI</h2>
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <Link to="/" style={{ color: '#ecf0f1', textDecoration: 'none' }}>Dashboard</Link>
-          <Link to="/analytics" style={{ color: '#ecf0f1', textDecoration: 'none' }}>Analytics</Link>
-          <Link to="/settings" style={{ color: '#ecf0f1', textDecoration: 'none' }}>Settings</Link>
+    <div className="app-layout">
+      <aside className="app-sidebar">
+        <div style={{ fontSize: '19px', fontWeight: 'bold', color: '#f6ad55', marginBottom: '20px' }}>
+          ChainPulse AI
+        </div>
+        <nav aria-label="Main Navigation" className="app-nav">
+          <NavLink to="/" end className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
+            Market Overview
+          </NavLink>
+          <NavLink to="/coin/BTC" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
+            Coin Detail Chart
+          </NavLink>
+          <NavLink to="/analytics" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
+            Visual Analytics
+          </NavLink>
+          <NavLink to="/settings" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
+            Settings
+          </NavLink>
         </nav>
       </aside>
 
-      {/* Main Content Area */}
-      <div style={{ flex: 1, backgroundColor: '#f7fafc', display: 'flex', flexDirection: 'column' }}>
-        <header style={{ backgroundColor: '#fff', padding: '15px 30px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontWeight: 'bold' }}>Live Market Integration (Week 4)</span>
-          <span style={{ color: '#718096', fontSize: '14px' }}>User: Amr</span>
-        </header>
+      <div className="app-main-wrapper">
+        <div className="app-header">
+          <span style={{ fontWeight: 'bold', color: '#1a202c' }}>Market Dashboard &amp; Visual Analytics (Week 5)</span>
+          <span style={{ color: '#4a5568', fontSize: '14px' }}>User: Amr</span>
+        </div>
 
-        <main style={{ padding: '30px', flex: 1 }}>
+        <main id="main-content" className="app-main">
           <Outlet />
         </main>
       </div>
