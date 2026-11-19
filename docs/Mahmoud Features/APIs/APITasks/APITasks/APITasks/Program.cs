@@ -13,9 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddHttpClient<IMarketProviderClient, CoinGeckoMarketProviderClient>(client =>
 {
     var baseUrl = builder.Configuration["MarketProvider:BaseUrl"];
-
     client.BaseAddress = new Uri(baseUrl!);
     client.Timeout = TimeSpan.FromSeconds(30);
+})
+.AddStandardResilienceHandler(options =>
+{
+    options.Retry.MaxRetryAttempts = 3;
+    options.Retry.Delay = TimeSpan.FromSeconds(2);
+    options.Retry.BackoffType = Polly.DelayBackoffType.Exponential;
+    options.Retry.UseJitter = true;
 });
 
 builder.Services.AddHostedService<MarketBackgroundService>();

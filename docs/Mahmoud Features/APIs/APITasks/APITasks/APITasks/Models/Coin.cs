@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace APITasks.Models;
 
 [Table("Coin")]
+[Index(nameof(ProviderName), nameof(ProviderCoinId), IsUnique = true)]
 public class Coin
 {
     
@@ -29,6 +31,16 @@ public class Coin
     [Column(TypeName="Numeric(10,4)")]
     [Range(-100, 100)]
     public float Change24h { get; set; }
+
+    [Required]
+    [Column(TypeName = "varchar(50)")]
+    [StringLength(50)]
+    public string ProviderName { get; set; } = string.Empty;
+
+    [Required]
+    [Column(TypeName = "varchar(100)")]
+    [StringLength(100)]
+    public string ProviderCoinId { get; set; } = string.Empty;
 
     public Coin() { }
 

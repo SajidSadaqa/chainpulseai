@@ -35,16 +35,31 @@ namespace APITasks.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<decimal>("PriceUSD")
                         .HasColumnType("Numeric(10,4)");
 
+                    b.Property<string>("ProviderCoinId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ProviderName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Symbol")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ProviderName", "ProviderCoinId")
+                        .IsUnique();
 
                     b.ToTable("Coin");
                 });

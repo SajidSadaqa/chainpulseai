@@ -78,16 +78,21 @@ public class MarketBackgroundService : BackgroundService
         foreach (var market in markets)
         {
             var coin = await db.Coins.FirstOrDefaultAsync(
-                c => c.Symbol.ToLower() == market.Symbol.ToLower(),
-                cancellationToken);
+            c => c.ProviderName == "CoinGecko" &&
+            c.ProviderCoinId == market.Id,
+            cancellationToken);
 
             if (coin == null)
             {
                 coin = new Coin(
-                    market.Name,
-                    market.Symbol,
-                    market.CurrentPrice,
-                    (float)(market.Change24h ?? 0));
+                market.Name,
+                market.Symbol,
+                market.CurrentPrice,
+                (float)(market.Change24h ?? 0))
+                {
+                    ProviderName = "CoinGecko",
+                    ProviderCoinId = market.Id
+                };
 
                 db.Coins.Add(coin);
             }
@@ -96,6 +101,8 @@ public class MarketBackgroundService : BackgroundService
                 coin.Name = market.Name;
                 coin.PriceUSD = market.CurrentPrice;
                 coin.Change24h = (float)(market.Change24h ?? 0);
+                coin.ProviderName = "CoinGecko";
+                coin.ProviderCoinId = market.Id;
             }
 
             snapshots.Add(new MarketSnapshot
