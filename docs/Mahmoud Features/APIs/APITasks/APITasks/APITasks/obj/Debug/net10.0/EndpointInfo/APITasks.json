@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             }
           }
@@ -113,17 +113,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Coin"
+                "$ref": "#/components/schemas/CreateCoinDto"
               }
             }
           }
@@ -148,6 +148,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Coins/test-error": {
+      "get": {
+        "tags": [
+          "Coins"
         ],
         "responses": {
           "200": {
@@ -215,6 +227,38 @@
             "maxLength": 100,
             "minLength": 0,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCoinDto": {
+        "required": [
+          "name",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 70,
+            "minLength": 2,
+            "type": "string"
+          },
+          "symbol": {
+            "maxLength": 20,
+            "minLength": 2,
+            "type": "string"
+          },
+          "priceUSD": {
+            "maximum": 999999999,
+            "minimum": 0.0001,
+            "type": "number",
+            "format": "double"
+          },
+          "change24h": {
+            "maximum": 100,
+            "minimum": -100,
+            "type": "number",
+            "format": "float"
           }
         },
         "additionalProperties": false

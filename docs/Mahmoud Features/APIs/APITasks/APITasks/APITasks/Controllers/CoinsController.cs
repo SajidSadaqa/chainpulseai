@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APITasks.Models;
 using APITasks.Data;
+using APITasks.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace APITasks.Controllers
@@ -33,47 +34,52 @@ namespace APITasks.Controllers
                 return NotFound(new { message = $"Coin with id {id} was Not Found." });
             }
 
-            return Problem(
-            title: "Coin Not Found",
-            detail: $"Coin with ID {id} was not found.",
-            statusCode: StatusCodes.Status404NotFound
-);
+            return Ok(Coin);
 
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Coin model)
+        public async Task<IActionResult> Create(CreateCoinDto model)
         {
-            var Coin = new Coin( model.Name, model.Symbol, model.PriceUSD, model.Change24h);
-            _Context.Coins.Add(Coin);
+            var coin = new Coin(
+                model.Name,
+                model.Symbol,
+                model.PriceUSD,
+                model.Change24h
+            );
+
+            _Context.Coins.Add(coin);
             await _Context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = Coin.ID }, Coin);
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = coin.ID },
+                coin
+            );
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, Coin model)
+        public async Task<IActionResult> Update(int id, CreateCoinDto model)
         {
-            var Coin = await _Context.Coins.FindAsync(id);
+            var coin = await _Context.Coins.FindAsync(id);
 
-            if (Coin == null)
+            if (coin == null)
             {
                 return Problem(
-                title: "Coin Not Found",
-                detail: $"Coin with ID {id} was not found.",
-                statusCode: StatusCodes.Status404NotFound
+                    title: "Coin Not Found",
+                    detail: $"Coin with ID {id} was not found.",
+                    statusCode: StatusCodes.Status404NotFound
                 );
             }
 
-
-            Coin.Name = model.Name;
-            Coin.Symbol = model.Symbol;
-            Coin.PriceUSD = model.PriceUSD;
-            Coin.Change24h = model.Change24h;
+            coin.Name = model.Name;
+            coin.Symbol = model.Symbol;
+            coin.PriceUSD = model.PriceUSD;
+            coin.Change24h = model.Change24h;
 
             await _Context.SaveChangesAsync();
-            
-            return Ok(Coin);
 
+            return Ok(coin);
         }
 
         [HttpDelete("{id:int}")]
@@ -96,6 +102,7 @@ namespace APITasks.Controllers
             return Ok(Coin);
         }
 
+        
 
     }
 }
