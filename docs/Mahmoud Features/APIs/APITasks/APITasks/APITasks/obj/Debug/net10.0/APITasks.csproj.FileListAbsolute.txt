@@ -40,6 +40,11 @@ D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Mono.TextTemplating.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Newtonsoft.Json.dll
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Npgsql.dll
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\System.ClientModel.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\System.CodeDom.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\System.Composition.AttributedModel.dll
@@ -148,6 +153,7 @@ D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.csproj.CoreCompileInputs.cache
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.MvcApplicationPartsAssemblyInfo.cs
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.MvcApplicationPartsAssemblyInfo.cache
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.sourcelink.json
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\rjimswa.dswa.cache.json
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -157,16 +163,10 @@ D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\staticwebassets.development.json
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\swae.build.ex.cache
+D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.csproj.Up2Date
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\refint\APITasks.dll
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.pdb
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.genruntimeconfig.cache
 D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\ref\APITasks.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Npgsql.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\APITasks.sourcelink.json
-D:\MyDesktop\ChainPulse AI\docs\Mahmoud Features\APIs\APITasks\APITasks\APITasks\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

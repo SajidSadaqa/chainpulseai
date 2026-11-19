@@ -87,5 +87,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "APITasks.Controllers.MarketController",
+    "Method": "GetLiveMarket",
+    "RelativePath": "api/Market/live",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

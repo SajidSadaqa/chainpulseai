@@ -155,6 +155,18 @@
           }
         }
       }
+    },
+    "/api/Market/live": {
+      "get": {
+        "tags": [
+          "Market"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -200,6 +212,9 @@
   "tags": [
     {
       "name": "Coins"
+    },
+    {
+      "name": "Market"
     }
   ]
 }
