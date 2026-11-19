@@ -106,10 +106,12 @@ namespace APITasks.Controllers
         [HttpGet("{id:int}/history")]
         public async Task<IActionResult> GetCoinHistory(
             int id,
+            [FromQuery] DateTime? from = null,
+            [FromQuery] DateTime? to = null,
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10)
         {
-            // Validate pagination parameters.
+            // Validate parameters
             if (page < 1 || pageSize < 1 || pageSize > 100)
             {
                 return BadRequest(new
@@ -118,8 +120,17 @@ namespace APITasks.Controllers
                 });
             }
 
-            // Check whether the coin exists.
-            var coinExists = await _Context.Coins.AnyAsync(c => c.ID == id);
+            if (from.HasValue && to.HasValue && from > to)
+            {
+                return BadRequest(new
+                {
+                    message = "'from' must be earlier than or equal to 'to'."
+                });
+            }
+
+            // Check if coin exists
+            var coinExists = await _Context.Coins
+                .AnyAsync(c => c.ID == id);
 
             if (!coinExists)
             {
@@ -129,16 +140,23 @@ namespace APITasks.Controllers
                 });
             }
 
-            // Get total number of historical records.
+            // Build history query
             var query = _Context.MarketSnapshots
                 .Where(s => s.CoinId == id);
 
+            if (from.HasValue)
+                query = query.Where(s => s.CapturedAt >= from.Value);
+
+            if (to.HasValue)
+                query = query.Where(s => s.CapturedAt <= to.Value);
+
+            // Count filtered records
             var totalRecords = await query.CountAsync();
 
-            // Retrieve the requested page.
+            // Get history in chronological order
             var history = await query
-                .OrderByDescending(s => s.CapturedAt)
-                .ThenByDescending(s => s.Id)
+                .OrderBy(s => s.CapturedAt)
+                .ThenBy(s => s.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(s => new CoinHistoryDto
@@ -154,6 +172,8 @@ namespace APITasks.Controllers
             return Ok(new
             {
                 coinId = id,
+                from,
+                to,
                 page,
                 pageSize,
                 totalRecords,
@@ -161,6 +181,7 @@ namespace APITasks.Controllers
                 data = history
             });
         }
+
 
 
     }

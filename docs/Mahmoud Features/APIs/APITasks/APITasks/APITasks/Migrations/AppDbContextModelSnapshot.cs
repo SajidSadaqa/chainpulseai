@@ -86,7 +86,9 @@ namespace APITasks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoinId");
+                    b.HasIndex("CoinId", "CapturedAt", "Id")
+                        .IsDescending(false, true, true)
+                        .HasDatabaseName("IX_MarketSnapshots_CoinId_CapturedAt_Id");
 
                     b.ToTable("MarketSnapshots");
                 });
