@@ -116,8 +116,28 @@
   },
   {
     "ContainingType": "APITasks.Controllers.MarketController",
+    "Method": "GetGlobalMarket",
+    "RelativePath": "api/Market/global",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "APITasks.Controllers.MarketController",
     "Method": "GetLiveMarket",
     "RelativePath": "api/Market/live",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "APITasks.Controllers.MarketController",
+    "Method": "GetMarketSummary",
+    "RelativePath": "api/Market/summary",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
