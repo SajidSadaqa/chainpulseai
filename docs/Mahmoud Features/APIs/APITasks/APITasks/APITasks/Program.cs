@@ -18,6 +18,8 @@ builder.Services.AddHttpClient<IMarketProviderClient, CoinGeckoMarketProviderCli
     client.Timeout = TimeSpan.FromSeconds(30);
 });
 
+builder.Services.AddHostedService<MarketBackgroundService>();
+
 var connectionString =
     builder.Configuration.GetConnectionString("ConnectionDb");
 
