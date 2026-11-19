@@ -102,7 +102,66 @@ namespace APITasks.Controllers
             return Ok(Coin);
         }
 
-        
+
+        [HttpGet("{id:int}/history")]
+        public async Task<IActionResult> GetCoinHistory(
+            int id,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            // Validate pagination parameters.
+            if (page < 1 || pageSize < 1 || pageSize > 100)
+            {
+                return BadRequest(new
+                {
+                    message = "Page must be at least 1 and pageSize must be between 1 and 100."
+                });
+            }
+
+            // Check whether the coin exists.
+            var coinExists = await _Context.Coins.AnyAsync(c => c.ID == id);
+
+            if (!coinExists)
+            {
+                return NotFound(new
+                {
+                    message = $"Coin with ID {id} was not found."
+                });
+            }
+
+            // Get total number of historical records.
+            var query = _Context.MarketSnapshots
+                .Where(s => s.CoinId == id);
+
+            var totalRecords = await query.CountAsync();
+
+            // Retrieve the requested page.
+            var history = await query
+                .OrderByDescending(s => s.CapturedAt)
+                .ThenByDescending(s => s.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(s => new CoinHistoryDto
+                {
+                    Id = s.Id,
+                    CoinId = s.CoinId,
+                    PriceUSD = s.PriceUSD,
+                    Change24h = s.Change24h,
+                    CapturedAt = s.CapturedAt
+                })
+                .ToListAsync();
+
+            return Ok(new
+            {
+                coinId = id,
+                page,
+                pageSize,
+                totalRecords,
+                totalPages = (int)Math.Ceiling((double)totalRecords / pageSize),
+                data = history
+            });
+        }
+
 
     }
 }

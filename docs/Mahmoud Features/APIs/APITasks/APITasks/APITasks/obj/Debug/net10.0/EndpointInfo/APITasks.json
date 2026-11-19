@@ -156,10 +156,39 @@
         }
       }
     },
-    "/api/Coins/test-error": {
+    "/api/Coins/{id}/history": {
       "get": {
         "tags": [
           "Coins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
         ],
         "responses": {
           "200": {

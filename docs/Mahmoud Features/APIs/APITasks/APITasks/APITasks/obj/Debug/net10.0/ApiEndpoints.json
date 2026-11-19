@@ -90,12 +90,28 @@
   },
   {
     "ContainingType": "APITasks.Controllers.CoinsController",
-    "Method": "TestError",
-    "RelativePath": "api/Coins/test-error",
+    "Method": "GetCoinHistory",
+    "RelativePath": "api/Coins/{id}/history",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
