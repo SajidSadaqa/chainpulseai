@@ -212,3 +212,191 @@ export async function fetchAnalyticsData(): Promise<AnalyticsOverviewResponse> {
     },
   };
 }
+
+// ============================================================================
+// WEEK 6: Blockchain Explorer Types & Read-Only Public Lookup API
+// ============================================================================
+
+export type BlockchainNetworkId = 'ethereum' | 'bitcoin' | 'unsupported';
+
+export interface BlockchainNetworkSummary {
+  networkId: BlockchainNetworkId;
+  networkName: string;
+  chainDescriptor: string;
+  latestBlock: string;
+  blockUnit: string;
+  baseFeeValue: string;
+  baseFeeUnit: string;
+  throughputValue: string;
+  throughputUnit: string;
+  updatedAt: string;
+}
+
+export interface BlockchainTxRecord {
+  hash: string;
+  networkName: string;
+  status: 'Confirmed' | 'Pending' | 'Failed';
+  blockHeight: string;
+  confirmations: number;
+  timestampUtc: string;
+  fromAddress: string;
+  toAddress: string;
+  amountValue: string;
+  amountUnit: string;
+  feeValue: string;
+  feeUnit: string;
+}
+
+export type BlockchainErrorCode =
+  | 'INVALID_HASH'
+  | 'NOT_FOUND'
+  | 'PROVIDER_ERROR'
+  | 'UNSUPPORTED_NETWORK';
+
+export interface BlockchainLookupResponse {
+  tx: BlockchainTxRecord | null;
+  errorCode: BlockchainErrorCode | null;
+  errorTitle: string | null;
+  errorMessage: string | null;
+}
+
+export const SAMPLE_ETH_TX_HASH = '0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060';
+export const SAMPLE_BTC_TX_HASH = '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b';
+export const SAMPLE_NOT_FOUND_HASH = '0x000000000000000000000000000000000000000000000000000000000000dead';
+export const SAMPLE_PROVIDER_ERROR_HASH = '0x9999999999999999999999999999999999999999999999999999999999999999';
+
+const PUBLIC_TRANSACTIONS: Record<string, BlockchainTxRecord> = {
+  [SAMPLE_ETH_TX_HASH.toLowerCase()]: {
+    hash: SAMPLE_ETH_TX_HASH,
+    networkName: 'Ethereum Mainnet',
+    status: 'Confirmed',
+    blockHeight: '#21,264,885',
+    confirmations: 42,
+    timestampUtc: '2026-11-25 13:15:24 UTC',
+    fromAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+    toAddress: '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B',
+    amountValue: '2.4500',
+    amountUnit: 'ETH',
+    feeValue: '0.00042',
+    feeUnit: 'ETH',
+  },
+  [SAMPLE_BTC_TX_HASH.toLowerCase()]: {
+    hash: SAMPLE_BTC_TX_HASH,
+    networkName: 'Bitcoin Mainnet',
+    status: 'Confirmed',
+    blockHeight: '#871,920',
+    confirmations: 18,
+    timestampUtc: '2026-11-25 12:48:10 UTC',
+    fromAddress: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+    toAddress: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+    amountValue: '0.38500000',
+    amountUnit: 'BTC',
+    feeValue: '0.00004120',
+    feeUnit: 'BTC',
+  },
+};
+
+export async function fetchBlockchainSummary(networkId: BlockchainNetworkId): Promise<BlockchainNetworkSummary> {
+  const now = new Date().toISOString();
+  if (networkId === 'bitcoin') {
+    return {
+      networkId: 'bitcoin',
+      networkName: 'Bitcoin Mainnet',
+      chainDescriptor: 'Network: BTC Mainnet (Public RPC)',
+      latestBlock: '#871,938',
+      blockUnit: 'Block Height',
+      baseFeeValue: '14.2',
+      baseFeeUnit: 'sat/vB',
+      throughputValue: '6.8',
+      throughputUnit: 'tx/sec',
+      updatedAt: now,
+    };
+  }
+
+  return {
+    networkId: 'ethereum',
+    networkName: 'Ethereum Mainnet',
+    chainDescriptor: 'Network: ETH Mainnet (Chain ID: 1)',
+    latestBlock: '#21,264,927',
+    blockUnit: 'Block Height',
+    baseFeeValue: '18.4',
+    baseFeeUnit: 'Gwei',
+    throughputValue: '15.4',
+    throughputUnit: 'tx/sec',
+    updatedAt: now,
+  };
+}
+
+export async function searchBlockchainTransaction(
+  rawHash: string,
+  networkId: BlockchainNetworkId
+): Promise<BlockchainLookupResponse> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const trimmed = rawHash.trim();
+
+      // 1. Unsupported network check
+      if (networkId === 'unsupported') {
+        resolve({
+          tx: null,
+          errorCode: 'UNSUPPORTED_NETWORK',
+          errorTitle: 'Unsupported Network Selected',
+          errorMessage:
+            'هذه الشبكة غير مدعومة حالياً في المستكشف. الشبكات المتاحة للقراءة العامة هي: Ethereum Mainnet و Bitcoin Mainnet.',
+        });
+        return;
+      }
+
+      // 2. Hash format validation
+      const isEthFormat = /^0x[a-fA-F0-9]{64}$/.test(trimmed);
+      const isBtcFormat = /^[a-fA-F0-9]{64}$/.test(trimmed);
+
+      if (!trimmed || (networkId === 'ethereum' && !isEthFormat) || (networkId === 'bitcoin' && !isBtcFormat)) {
+        const expectedHint =
+          networkId === 'ethereum'
+            ? 'يجب أن يبدأ الهاش بـ 0x ويتكون من 66 خانة سداسية عشرية (Hex).'
+            : 'يجب أن يتكون هاش البيتكوين من 64 خانة سداسية عشرية (Hex) بدون 0x.';
+
+        resolve({
+          tx: null,
+          errorCode: 'INVALID_HASH',
+          errorTitle: 'Invalid Transaction Hash Format',
+          errorMessage: `صيغة رقم المعاملة غير صحيحة لشبكة ${networkId === 'ethereum' ? 'Ethereum' : 'Bitcoin'}. ${expectedHint}`,
+        });
+        return;
+      }
+
+      // 3. Normalized backend/provider RPC error
+      if (trimmed.toLowerCase() === SAMPLE_PROVIDER_ERROR_HASH) {
+        resolve({
+          tx: null,
+          errorCode: 'PROVIDER_ERROR',
+          errorTitle: 'Blockchain Provider Error (HTTP 502)',
+          errorMessage:
+            'تعذر الاتصال بعقدة المزود الخارجي (RPC Node Timeout). يرجى إعادة المحاولة بعد قليل.',
+        });
+        return;
+      }
+
+      // 4. Lookup known public transaction
+      const found = PUBLIC_TRANSACTIONS[trimmed.toLowerCase()];
+      if (!found) {
+        resolve({
+          tx: null,
+          errorCode: 'NOT_FOUND',
+          errorTitle: 'Transaction Not Found',
+          errorMessage:
+            'الهاش صحيح الصيغة لكن لم يتم العثور على المعاملة في السجل العام أو أنها لم تُؤكد بعد على هذه الشبكة.',
+        });
+        return;
+      }
+
+      resolve({
+        tx: found,
+        errorCode: null,
+        errorTitle: null,
+        errorMessage: null,
+      });
+    }, 300);
+  });
+}

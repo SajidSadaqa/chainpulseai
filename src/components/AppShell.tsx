@@ -18,6 +18,9 @@ export default function AppShell() {
           <NavLink to="/analytics" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
             Visual Analytics
           </NavLink>
+          <NavLink to="/blockchain" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
+            Blockchain Explorer
+          </NavLink>
           <NavLink to="/settings" className={({ isActive }) => `app-nav-link ${isActive ? 'active' : ''}`}>
             Settings
           </NavLink>
@@ -26,7 +29,7 @@ export default function AppShell() {
 
       <div className="app-main-wrapper">
         <div className="app-header">
-          <span style={{ fontWeight: 'bold', color: '#1a202c' }}>Market Dashboard &amp; Visual Analytics (Week 5)</span>
+          <span style={{ fontWeight: 'bold', color: '#1a202c' }}>Blockchain Explorer &amp; Visual Analytics (Week 6)</span>
           <span style={{ color: '#4a5568', fontSize: '14px' }}>User: Amr</span>
         </div>
 
